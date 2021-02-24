@@ -1,0 +1,43 @@
+.container {
+    height: 92vh;
+    display: flex;
+    
+    width: auto;
+    background-color: #006747;
+}
+
+.column {
+    float: left;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left {
+    width: 25%;
+    border: 1px solid #cfc493;
+}
+
+.right {
+    width: 75%;
+    border:  1px solid #cfc493;
+}
+
+.border-top{
+    border-top: 1px solid #cfc493;
+}
+.border-bottom{
+    border-bottom: 1px solid #cfc493;
+}
+.border-left{
+    border-left: 1px solid #cfc493;
+}
+.border-right{
+    border-right: 1px solid #cfc493;
+}
+.img-hold{
+    width: 100%;
+}
