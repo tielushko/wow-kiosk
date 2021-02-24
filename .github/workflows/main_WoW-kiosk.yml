@@ -12,7 +12,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: windows-latest
-
+    env:
+      CI: false
     steps:
     - uses: actions/checkout@master
 
