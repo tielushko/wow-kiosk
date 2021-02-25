@@ -16,12 +16,12 @@
     clear: both;
 }
 
-.left {
+.right {
     width: 25%;
     border: 1px solid #cfc493;
 }
 
-.right {
+.left {
     width: 75%;
     border:  1px solid #cfc493;
 }
@@ -39,5 +39,5 @@
     border-right: 1px solid #cfc493;
 }
 .img-hold{
-    width: 100%;
+    width: 95%;
 }
