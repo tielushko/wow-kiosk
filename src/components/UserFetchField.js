@@ -1,9 +1,31 @@
 import React, { useState } from "react";
-import { CallClient, CallAgent } from "@azure/communication-calling";
+import {
+    CallClient,
+    CallAgent,
+    LocalVideoStream,
+    Renderer,
+} from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
 
 let call;
 let callAgent;
+let deviceManager;
+let cameras;
+let videoDeviceInfo;
+let localVideoStream;
+let placeCallOptions;
+
+// const incomingCallHander = async () => {
+//     //Get information about caller
+
+//     let callerInfo = incomingCall.callerInfo;
+
+//     //accept the call
+//     call = await incomingCall.accept();
+
+//     //reject the call
+//     incomingCall.reject();
+// };
 
 const fetchNewUser = async () => {
     const tokenURL =
@@ -17,7 +39,10 @@ const fetchNewUser = async () => {
 const startCall = () => {
     const calleeInput = document.querySelector("#callee-input");
     const userToCall = calleeInput.value;
-    call = callAgent.startCall([{ communicationUserId: userToCall }], {});
+    call = callAgent.startCall(
+        [{ communicationUserId: userToCall }],
+        placeCallOptions
+    );
 };
 
 const endCall = () => {
@@ -36,6 +61,27 @@ const joinTeamsMeeting = () => {
     const meetingToCall = { meetingLink: teamsMetingInput.value };
     call = callAgent.join(meetingToCall, {});
 };
+
+//TODO - not displaying the video feed
+function subscribeToRemoteVideoStream(remoteVideoStream) {
+    let renderer = new Renderer(remoteVideoStream);
+    const displayVideo = async () => {
+        const view = await renderer.createView();
+        // const videoFeedView = document.getElementById("#video-feed-view");
+        document.body.appendChild(view.target);
+    };
+    remoteVideoStream.on("availabilityChanged", async () => {
+        if (remoteVideoStream.isAvailable) {
+            displayVideo();
+        } else {
+            renderer.dispose();
+        }
+    });
+    if (remoteVideoStream.isAvailable) {
+        displayVideo();
+    }
+}
+
 const UserFetchField = () => {
     const [userID, setUserID] = useState("UserID Here");
 
@@ -46,7 +92,28 @@ const UserFetchField = () => {
         const tokenCredential = new AzureCommunicationTokenCredential(
             userDetailResponse.token
         );
-        callAgent = await callClient.createCallAgent(tokenCredential);
+        callAgent = await callClient.createCallAgent(tokenCredential, {
+            displayName: "Testing Callee",
+        });
+        deviceManager = await callClient.getDeviceManager();
+        cameras = await deviceManager.getCameras();
+        videoDeviceInfo = cameras[0];
+        localVideoStream = new LocalVideoStream(videoDeviceInfo);
+        placeCallOptions = {
+            videoOptions: { localVideoStreams: [localVideoStream] },
+        };
+        callAgent.on("incomingCall", async (args) => {
+            //subscribe to the video stream
+
+            // accept the incoming call
+            call = await args.incomingCall.accept();
+            const remoteVideoStream =
+                call.remoteParticipants[0].videoStreams[0];
+            console.log(remoteVideoStream);
+            subscribeToRemoteVideoStream(remoteVideoStream);
+            // // or reject the incoming call
+            // args.incomingCall.reject();
+        });
         setUserID(userDetailResponse.userID);
     };
     return (
@@ -81,6 +148,7 @@ const UserFetchField = () => {
             >
                 Join Teams Meeting
             </button>
+            <section id="video-feed-view"></section>
         </React.Fragment>
     );
 };
