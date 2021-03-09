@@ -6,27 +6,34 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
+// import StreamVideo from "../pages/Livevideo/StreamVideo";
+
+const videoSectionStyle = {
+    height: "200px",
+    width: "300px",
+    backgroundColor: "black",
+    position: "relative",
+};
+const videoStyle = {
+    backgroundColor: "black",
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+};
 
 let call;
 let callAgent;
 let deviceManager;
 let cameras;
 let videoDeviceInfo;
-let localVideoStream;
 let placeCallOptions;
+//for rendering the video of the remote caller
+let localRenderer;
+let remoteRenderer;
+let remoteVideoStream;
+let localVideoStream;
 
-// const incomingCallHander = async () => {
-//     //Get information about caller
-
-//     let callerInfo = incomingCall.callerInfo;
-
-//     //accept the call
-//     call = await incomingCall.accept();
-
-//     //reject the call
-//     incomingCall.reject();
-// };
-
+// fetching from the user-provisioning api
 const fetchNewUser = async () => {
     const tokenURL =
         "https://wow-kiosk-trusted-token-provisioning.azurewebsites.net/api/WoW-Kiosk-Trusted-Token-Provisioning";
@@ -43,51 +50,82 @@ const startCall = () => {
         [{ communicationUserId: userToCall }],
         placeCallOptions
     );
+    subscribeToRemoteParticipantInCall(call);
 };
 
 const endCall = () => {
     // end the current call
-    call.hangUp({ forEveryone: true });
+    call.hangUp(/*{ forEveryone: true }*/);
 };
 
 const joinGroupCall = () => {
     const groupCallInput = document.querySelector("#group-call-input");
     const groupToCall = { groupId: groupCallInput.value };
-    call = callAgent.join(groupToCall);
+    call = callAgent.join(groupToCall, placeCallOptions);
 };
 
 const joinTeamsMeeting = () => {
     const teamsMetingInput = document.querySelector("#teams-meeting-input");
     const meetingToCall = { meetingLink: teamsMetingInput.value };
-    call = callAgent.join(meetingToCall, {});
+    call = callAgent.join(meetingToCall, placeCallOptions);
 };
 
-//TODO - not displaying the video feed
-function subscribeToRemoteVideoStream(remoteVideoStream) {
-    let renderer = new Renderer(remoteVideoStream);
-    const displayVideo = async () => {
-        const view = await renderer.createView();
-        // const videoFeedView = document.getElementById("#video-feed-view");
-        document.body.appendChild(view.target);
-    };
+function subscribeToRemoteParticipantInCall(callInstance) {
+    callInstance.remoteParticipants.forEach((p) => {
+        subscribeToRemoteParticipant(p);
+    });
+    callInstance.on("remoteParticipantsUpdated", (e) => {
+        e.added.forEach((p) => {
+            subscribeToRemoteParticipant(p);
+        });
+    });
+}
+
+function subscribeToRemoteParticipant(remoteParticipant) {
+    remoteParticipant.videoStreams.forEach((v) => {
+        handleVideoStream(v);
+    });
+    remoteParticipant.on("videoStreamsUpdated", (e) => {
+        e.added.forEach((v) => {
+            handleVideoStream(v);
+        });
+    });
+}
+
+function handleVideoStream(remoteVideoStream) {
     remoteVideoStream.on("availabilityChanged", async () => {
         if (remoteVideoStream.isAvailable) {
-            displayVideo();
+            remoteVideoView(remoteVideoStream);
         } else {
-            renderer.dispose();
+            remoteRenderer.dispose();
         }
     });
     if (remoteVideoStream.isAvailable) {
-        displayVideo();
+        remoteVideoView(remoteVideoStream);
     }
+}
+
+async function remoteVideoView(remoteVideoStream) {
+    remoteRenderer = new Renderer(remoteVideoStream);
+    const view = await remoteRenderer.createView();
+    document.getElementById("remote-feed-view").appendChild(view.target);
+}
+
+async function localVideoView() {
+    localRenderer = new Renderer(localVideoStream);
+    const view = await localRenderer.createView();
+    document.getElementById("local-feed-view").appendChild(view.target);
 }
 
 const UserFetchField = () => {
     const [userID, setUserID] = useState("UserID Here");
 
     const provisionUser = async () => {
+        //fetching API object from the backend
         const userDetailResponse = await fetchNewUser();
         console.log(userDetailResponse);
+
+        //initializing the calling client and setting the token credential - creating callAgent.
         const callClient = new CallClient();
         const tokenCredential = new AzureCommunicationTokenCredential(
             userDetailResponse.token
@@ -95,6 +133,8 @@ const UserFetchField = () => {
         callAgent = await callClient.createCallAgent(tokenCredential, {
             displayName: "Testing Callee",
         });
+
+        //creating the local video stream to be sent with the application
         deviceManager = await callClient.getDeviceManager();
         cameras = await deviceManager.getCameras();
         videoDeviceInfo = cameras[0];
@@ -102,18 +142,21 @@ const UserFetchField = () => {
         placeCallOptions = {
             videoOptions: { localVideoStreams: [localVideoStream] },
         };
-        callAgent.on("incomingCall", async (args) => {
-            //subscribe to the video stream
 
+        // subscribing to an incoming call event -> fires whenever we are receiving an incoming call
+        callAgent.on("incomingCall", async (args) => {
             // accept the incoming call
-            call = await args.incomingCall.accept();
-            const remoteVideoStream =
-                call.remoteParticipants[0].videoStreams[0];
-            console.log(remoteVideoStream);
-            subscribeToRemoteVideoStream(remoteVideoStream);
-            // // or reject the incoming call
+            call = await args.incomingCall.accept(placeCallOptions);
+
+            // const remoteVideoStream =
+            //     call.remoteParticipants[0].videoStreams[0];
+            // console.log(remoteVideoStream);
+            // subscribeToRemoteVideoStream(remoteVideoStream);
+            // or reject the incoming call
             // args.incomingCall.reject();
         });
+
+        localVideoView();
         setUserID(userDetailResponse.userID);
     };
     return (
@@ -148,7 +191,16 @@ const UserFetchField = () => {
             >
                 Join Teams Meeting
             </button>
-            <section id="video-feed-view"></section>
+
+            <div>Local Video</div>
+            <section style={videoSectionStyle}>
+                <div id="local-feed-view" style={videoStyle}></div>
+            </section>
+            <div></div>
+            <div>Remote Video</div>
+            <section style={videoSectionStyle}>
+                <div id="remote-feed-view" style={videoStyle}></div>
+            </section>
         </React.Fragment>
     );
 };
