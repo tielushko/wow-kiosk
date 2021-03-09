@@ -24,10 +24,10 @@ const videoStyle = {
 let call;
 let callAgent;
 let deviceManager;
-let cameras;
-let videoDeviceInfo;
+// let cameras;
+// let videoDeviceInfo;
 let placeCallOptions;
-//for rendering the video of the remote caller
+//for rendering the video of local and the remote caller
 let localRenderer;
 let remoteRenderer;
 let remoteVideoStream;
@@ -43,7 +43,16 @@ const fetchNewUser = async () => {
     }
 };
 
-const startCall = () => {
+const startCall = async () => {
+    const cameras = await deviceManager.getCameras();
+    const videoDeviceInfo = cameras[0];
+    localVideoStream = new LocalVideoStream(videoDeviceInfo);
+    placeCallOptions = {
+        videoOptions: { localVideoStreams: [localVideoStream] },
+    };
+
+    localVideoView();
+
     const calleeInput = document.querySelector("#callee-input");
     const userToCall = calleeInput.value;
     call = callAgent.startCall(
@@ -56,18 +65,40 @@ const startCall = () => {
 const endCall = () => {
     // end the current call
     call.hangUp(/*{ forEveryone: true }*/);
+    localRenderer.dispose();
 };
 
-const joinGroupCall = () => {
+const joinGroupCall = async () => {
+    const cameras = await deviceManager.getCameras();
+    const videoDeviceInfo = cameras[0];
+    localVideoStream = new LocalVideoStream(videoDeviceInfo);
+    placeCallOptions = {
+        videoOptions: { localVideoStreams: [localVideoStream] },
+    };
+
+    localVideoView();
+
     const groupCallInput = document.querySelector("#group-call-input");
     const groupToCall = { groupId: groupCallInput.value };
     call = callAgent.join(groupToCall, placeCallOptions);
+
+    subscribeToRemoteParticipantInCall(call);
 };
 
-const joinTeamsMeeting = () => {
+const joinTeamsMeeting = async () => {
+    const cameras = await deviceManager.getCameras();
+    const videoDeviceInfo = cameras[0];
+    localVideoStream = new LocalVideoStream(videoDeviceInfo);
+    placeCallOptions = {
+        videoOptions: { localVideoStreams: [localVideoStream] },
+    };
+
+    localVideoView();
     const teamsMetingInput = document.querySelector("#teams-meeting-input");
     const meetingToCall = { meetingLink: teamsMetingInput.value };
     call = callAgent.join(meetingToCall, placeCallOptions);
+
+    subscribeToRemoteParticipantInCall(call);
 };
 
 function subscribeToRemoteParticipantInCall(callInstance) {
@@ -93,7 +124,7 @@ function subscribeToRemoteParticipant(remoteParticipant) {
 }
 
 function handleVideoStream(remoteVideoStream) {
-    remoteVideoStream.on("availabilityChanged", async () => {
+    remoteVideoStream.on("isAvailableChanged", async () => {
         if (remoteVideoStream.isAvailable) {
             remoteVideoView(remoteVideoStream);
         } else {
@@ -136,27 +167,24 @@ const UserFetchField = () => {
 
         //creating the local video stream to be sent with the application
         deviceManager = await callClient.getDeviceManager();
-        cameras = await deviceManager.getCameras();
-        videoDeviceInfo = cameras[0];
-        localVideoStream = new LocalVideoStream(videoDeviceInfo);
-        placeCallOptions = {
-            videoOptions: { localVideoStreams: [localVideoStream] },
-        };
 
         // subscribing to an incoming call event -> fires whenever we are receiving an incoming call
         callAgent.on("incomingCall", async (args) => {
+            const cameras = await deviceManager.getCameras();
+            const videoDeviceInfo = cameras[0];
+            localVideoStream = new LocalVideoStream(videoDeviceInfo);
+            localVideoView();
+            const addedCall = await args.incomingCall.accept({
+                videoOptions: { localVideoStreams: [localVideoStream] },
+            });
             // accept the incoming call
-            call = await args.incomingCall.accept(placeCallOptions);
+            call = addedCall;
 
-            // const remoteVideoStream =
-            //     call.remoteParticipants[0].videoStreams[0];
-            // console.log(remoteVideoStream);
-            // subscribeToRemoteVideoStream(remoteVideoStream);
+            subscribeToRemoteParticipantInCall(addedCall);
             // or reject the incoming call
             // args.incomingCall.reject();
         });
 
-        localVideoView();
         setUserID(userDetailResponse.userID);
     };
     return (
@@ -192,12 +220,12 @@ const UserFetchField = () => {
                 Join Teams Meeting
             </button>
 
-            <div>Local Video</div>
+            <h2>Local Video</h2>
             <section style={videoSectionStyle}>
                 <div id="local-feed-view" style={videoStyle}></div>
             </section>
             <div></div>
-            <div>Remote Video</div>
+            <h2>Remote Video</h2>
             <section style={videoSectionStyle}>
                 <div id="remote-feed-view" style={videoStyle}></div>
             </section>
