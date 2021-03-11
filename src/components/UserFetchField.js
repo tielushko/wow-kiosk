@@ -62,10 +62,13 @@ const startCall = async () => {
     subscribeToRemoteParticipantInCall(call);
 };
 
-const endCall = () => {
+const endCall = async () => {
     // end the current call
-    call.hangUp(/*{ forEveryone: true }*/);
     localRenderer.dispose();
+    if (remoteRenderer) {
+        remoteRenderer.dispose();
+    }
+    await call.hangUp(/*{ forEveryone: true }*/);
 };
 
 const joinGroupCall = async () => {
@@ -183,6 +186,14 @@ const UserFetchField = () => {
             subscribeToRemoteParticipantInCall(addedCall);
             // or reject the incoming call
             // args.incomingCall.reject();
+        });
+
+        callAgent.on("callsUpdated", (e) => {
+            e.removed.forEach((removedCall) => {
+                // dispose of video renders
+                localRenderer.dispose();
+                remoteRenderer.dispose();
+            });
         });
 
         setUserID(userDetailResponse.userID);
