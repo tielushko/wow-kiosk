@@ -36,7 +36,7 @@ let localVideoStream;
 // fetching from the user-provisioning api
 const fetchNewUser = async () => {
     const tokenURL =
-        "https://wow-kiosk-trusted-token-provisioning.azurewebsites.net/api/WoW-Kiosk-Trusted-Token-Provisioning";
+        "https://wow-kiosk-tokens.azurewebsites.net/api/wow-kiosk-tokens";
     let response = await fetch(tokenURL);
     if (response.ok) {
         return response.json();
