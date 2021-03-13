@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import UserFetchField from "../../components/UserFetchField";
+import ChatBot from "../../components/ChatBot";
 import "./Home.css";
 
 const Home = () => {
@@ -30,8 +31,8 @@ const Home = () => {
 
             <div className="column right border">
                 <div className="row border-bottom">
-                    <img className="img-hold" src="logo512.png" alt="holder" />
-                    {/* <video ref={videoRef} /> */}
+                    <ChatBot />
+                    {/* <img className="img-hold" src="logo512.png" alt="holder" /> */}
                 </div>
                 <div className="row border-top">
                     <img className="img-hold" src="logo512.png" alt="holder" />
