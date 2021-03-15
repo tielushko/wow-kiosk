@@ -7,6 +7,7 @@ import {
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
 // import StreamVideo from "../pages/Livevideo/StreamVideo";
+import {searchKiosk, saveToken, createTable, getToken} from './TableFunctions';
 
 const videoSectionStyle = {
     height: "200px",
