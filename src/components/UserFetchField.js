@@ -6,6 +6,7 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
+import './VideoChat.css'
 // import StreamVideo from "../pages/Livevideo/StreamVideo";
 
 const videoSectionStyle = {
