@@ -1,6 +1,24 @@
 import React, { useState } from "react";
 import { CallClient, CallAgent } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
+<<<<<<< Updated upstream
+=======
+import './VideoChat.css'
+// import StreamVideo from "../pages/Livevideo/StreamVideo";
+
+const videoSectionStyle = {
+    height: "200px",
+    width: "300px",
+    backgroundColor: "black",
+    position: "relative",
+};
+const videoStyle = {
+    backgroundColor: "black",
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+};
+>>>>>>> Stashed changes
 
 let call;
 let callAgent;
@@ -30,11 +48,68 @@ const UserFetchField = () => {
         setUserID(userDetailResponse.userID);
     };
     return (
-        <React.Fragment>
+        <React.Fragment className='streamContainer'>
             <h2>{userID}</h2>
+<<<<<<< Updated upstream
             <button onClick={provisionUser}>Provision User</button>
+=======
+            <button onClick={provisionUser} id="provision-user-button">
+                Provision User
+            </button>
+            <input type="text" id="callee-input" />
+            <button disabled={false} id="start-call-button" onClick={startCall}>
+                Start Call
+            </button>
+
+            <button disabled={false} id="end-call-button" onClick={endCall}>
+                End Call
+            </button>
+            <br />
+            <input type="text" id="group-call-input" />
+            <button
+                disabled={false}
+                id="join-group-call-button"
+                onClick={joinGroupCall}
+            >
+                Join Group Call
+            </button>
+            <br />
+            <input type="text" id="teams-meeting-input" />
+            <button
+                disabled={false}
+                id="join-teams-meeting-button"
+                onClick={joinTeamsMeeting}
+            >
+                Join Teams Meeting
+            </button>
+
+            <div className='videoParent'>
+                <section 
+                //style={videoSectionStyle}
+                className='localVideoSectionStyle localVideo'
+                >
+                    <div id="local-feed-view" 
+                    //style={videoStyle}
+                    className='videoStyle'
+                    ></div>
+                </section>
+                
+                <section 
+                //style={videoSectionStyle}
+                className='remoteVideoSectionStyle remoteVideo'
+                >
+                    <div id="remote-feed-view" 
+                    //style={videoStyle}
+                    className='videoStyle'
+                    ></div>
+                </section>
+            </div>
+>>>>>>> Stashed changes
         </React.Fragment>
     );
 };
+//<h2>Local Video</h2>
+//<div></div>
+//<h2>Remote Video</h2>
 
 export default UserFetchField;

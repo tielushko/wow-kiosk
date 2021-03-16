@@ -1,6 +1,14 @@
 .header{
     height: 8vh;
     display: flex;
+<<<<<<< Updated upstream
 
+=======
+    width: 100%;
+>>>>>>> Stashed changes
     z-index: 999;
+}
+
+.usfImg{
+    width: auto;
 }
