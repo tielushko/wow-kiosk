@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { CallClient, CallAgent } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
-<<<<<<< Updated upstream
-=======
 import './VideoChat.css'
 // import StreamVideo from "../pages/Livevideo/StreamVideo";
 
@@ -18,7 +16,6 @@ const videoStyle = {
     top: "50%",
     transform: "translateY(-50%)",
 };
->>>>>>> Stashed changes
 
 let call;
 let callAgent;
@@ -50,9 +47,6 @@ const UserFetchField = () => {
     return (
         <React.Fragment className='streamContainer'>
             <h2>{userID}</h2>
-<<<<<<< Updated upstream
-            <button onClick={provisionUser}>Provision User</button>
-=======
             <button onClick={provisionUser} id="provision-user-button">
                 Provision User
             </button>
@@ -104,7 +98,6 @@ const UserFetchField = () => {
                     ></div>
                 </section>
             </div>
->>>>>>> Stashed changes
         </React.Fragment>
     );
 };
