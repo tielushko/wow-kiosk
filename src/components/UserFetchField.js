@@ -200,7 +200,7 @@ const UserFetchField = () => {
         setUserID(userDetailResponse.userID);
     };
     return (
-        <React.Fragment className='streamContainer'>
+        <React.Fragment>
             <h2>{userID}</h2>
             <button onClick={provisionUser} id="provision-user-button">
                 Provision User
