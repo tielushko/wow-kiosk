@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
     CallClient,
-    CallAgent,
     LocalVideoStream,
     Renderer,
 } from "@azure/communication-calling";

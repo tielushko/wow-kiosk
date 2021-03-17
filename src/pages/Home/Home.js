@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import UserFetchField from "../../components/UserFetchField";
 import ChatBot from "../../components/ChatBot";
 import "./Home.css";
