@@ -18,15 +18,15 @@
 
 */
 .remoteVideoSectionStyle {
-    height: 600px;
-    width: 900px;
+    height: 504px; /*600px*/
+    width: 896px; /*900px*/
     background-color: black;
     
 }
 
 .localVideoSectionStyle {
-    height: 200px;
-    width: 300px;
+    height: 168px; /*200*/
+    width: 299px;/*300*/
     background-color: black;
     
 }
@@ -40,7 +40,7 @@
 
 .localVideo {
     position: relative;
-    top: 400px;
+    top: 336px; /*400*/
     left: 0;
     border: 1px red solid;
     z-index: 99;
