@@ -34,14 +34,14 @@
 .videoParent {
     position: absolute;
     left: 1.05vw;
-    top:24%;
+    top:250px;
 }
 
 
 .localVideo {
     position: relative;
     top: 400px;
-    left: 600px;
+    left: 0;
     border: 1px red solid;
     z-index: 99;
 }
