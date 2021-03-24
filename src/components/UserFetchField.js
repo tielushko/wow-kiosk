@@ -6,7 +6,7 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
-// import StreamVideo from "../pages/Livevideo/StreamVideo";
+import './VideoChat.css'
 import {searchKiosk, saveToken, createTable, getToken} from './TableFunctions';
 
 const videoSectionStyle = {
@@ -232,17 +232,32 @@ const UserFetchField = () => {
                 Join Teams Meeting
             </button>
 
-            <h2>Local Video</h2>
-            <section style={videoSectionStyle}>
-                <div id="local-feed-view" style={videoStyle}></div>
-            </section>
-            <div></div>
-            <h2>Remote Video</h2>
-            <section style={videoSectionStyle}>
-                <div id="remote-feed-view" style={videoStyle}></div>
-            </section>
+            <div className='videoParent'>
+                <section 
+                //style={videoSectionStyle}
+                className='localVideoSectionStyle localVideo'
+                >
+                    <div id="local-feed-view" 
+                    //style={videoStyle}
+                    className='videoStyle'
+                    ></div>
+                </section>
+                
+                <section 
+                //style={videoSectionStyle}
+                className='remoteVideoSectionStyle remoteVideo'
+                >
+                    <div id="remote-feed-view" 
+                    //style={videoStyle}
+                    className='videoStyle'
+                    ></div>
+                </section>
+            </div>
         </React.Fragment>
     );
 };
+//<h2>Local Video</h2>
+//<div></div>
+//<h2>Remote Video</h2>
 
 export default UserFetchField;

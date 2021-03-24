@@ -4,7 +4,7 @@ import "./Header.css";
 const Header = () => {
     return (
         <div className="header">
-            <img src="USF-logo.png" alt="USF" />
+            <img className='usfImg' src="USF-logo.png" alt="USF" />
         </div>
     );
 };

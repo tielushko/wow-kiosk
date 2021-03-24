@@ -1,29 +1,37 @@
 .container {
-    height: 92vh;
-    display: flex;
     
-    width: auto;
     background-color: #006747;
+    padding: 1vw;
+    
+    
 }
 
-.column {
+.column-left {
     float: left;
+    width: 75%;
+    
+    border:  1px solid #cfc493;
 }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.right {
-    width: 25%;
+.column-right {
+    float: left;
+    flex: 25%;
     border: 1px solid #cfc493;
 }
 
-.left {
-    width: 75%;
-    border:  1px solid #cfc493;
+.row:after {
+    display: flex;
+}
+
+.border {
+    border: 1px solid #cfc493;
+    padding: auto;
+    align-items: center;
+    
+}
+
+.videoContainer {
+    height: 750px;
 }
 
 .border-top{
@@ -40,4 +48,15 @@
 }
 .img-hold{
     width: 95%;
+}
+
+@media screen and (max-width: 1250px) {
+    .column-left{
+        width: 99.8%;
+    }
+
+    .column-right {
+        width: 99.8%;
+    }
+    
 }
