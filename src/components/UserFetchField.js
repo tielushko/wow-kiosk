@@ -6,8 +6,13 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
-import './VideoChat.css'
-import {searchKiosk, saveToken, createTable, getToken} from './TableFunctions';
+import "./VideoChat.css";
+import {
+    searchKiosk,
+    saveToken,
+    createTable,
+    getToken,
+} from "./TableFunctions";
 
 const videoSectionStyle = {
     height: "200px",
@@ -38,6 +43,15 @@ let localVideoStream;
 const fetchNewUser = async () => {
     const tokenURL =
         "https://wow-kiosk-tokens.azurewebsites.net/api/wow-kiosk-tokens";
+    let response = await fetch(tokenURL);
+    if (response.ok) {
+        return response.json();
+    }
+};
+
+//function that takes in the userID and fetches the refreshed access token for the ACS API - for Wilson.
+const refreshACSToken = async (userID) => {
+    const tokenURL = `https://wow-tokens-refresh.azurewebsites.net/api/user/${userID}/refresh`;
     let response = await fetch(tokenURL);
     if (response.ok) {
         return response.json();
@@ -151,6 +165,38 @@ async function localVideoView() {
     const view = await localRenderer.createView();
     document.getElementById("local-feed-view").appendChild(view.target);
 }
+/* comment for wilson - once the user hits the "Login" button, you will:
+            1. take the content of the input box near the login button 
+            2. Lookup the login name ex. "wilsonp" or "kiosk1" and pull up the ACS User ID that is associated with that user.
+            3. with that retrieved login name, we want to make a call to refresh the token for accessing the ACS.
+            4. call refreshACSToken(USER_ID_FOUND_IN_TABLE_HERE) -> see how i use fetch new user below in provision user.
+            5. debug with console. the token shoud be under userResponse.token
+            6. initialize the calling client, tokenCredential, call agent and etc, similar to what we have in provisionUser.
+        
+    Once the user types the correct login name in the box to call the user - "wilsonp" for example, we want to:
+            1. In the startCall button event handler we want to make a call to database to retrieve the actual ACS user ID from the login wilsonp
+            2. We want to place the call using that retrieved identity for ACS using the userToCall variable to store it.
+            3. what we have instead of this
+            
+            ...  blah blah...
+            const calleeInput = document.querySelector("#callee-input");
+            const userToCall = calleeInput.value;
+            call = callAgent.startCall(
+                [{ communicationUserId: userToCall }],
+                placeCallOptions
+            );
+            ...  blah blah...
+
+            we now have this! 
+            ...  blah blah...
+
+            const calleeInput = document.querySelector("#callee-input");
+            const userToCall = fetchACSIDFromTable(calleeInput.value); // table func that would return our user ACS ID
+            call = callAgent.startCall(
+                [{ communicationUserId: userToCall }],
+                placeCallOptions
+            ); 
+            */
 
 const UserFetchField = () => {
     const [userID, setUserID] = useState("UserID Here");
@@ -232,24 +278,26 @@ const UserFetchField = () => {
                 Join Teams Meeting
             </button>
 
-            <div className='videoParent'>
-                <section 
-                //style={videoSectionStyle}
-                className='localVideoSectionStyle localVideo'
+            <div className="videoParent">
+                <section
+                    //style={videoSectionStyle}
+                    className="localVideoSectionStyle localVideo"
                 >
-                    <div id="local-feed-view" 
-                    //style={videoStyle}
-                    className='videoStyle'
+                    <div
+                        id="local-feed-view"
+                        //style={videoStyle}
+                        className="videoStyle"
                     ></div>
                 </section>
-                
-                <section 
-                //style={videoSectionStyle}
-                className='remoteVideoSectionStyle remoteVideo'
+
+                <section
+                    //style={videoSectionStyle}
+                    className="remoteVideoSectionStyle remoteVideo"
                 >
-                    <div id="remote-feed-view" 
-                    //style={videoStyle}
-                    className='videoStyle'
+                    <div
+                        id="remote-feed-view"
+                        //style={videoStyle}
+                        className="videoStyle"
                     ></div>
                 </section>
             </div>
