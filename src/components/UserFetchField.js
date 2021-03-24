@@ -6,8 +6,13 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
-import './VideoChat.css'
-import {searchKiosk, saveToken, createTable, getToken} from './TableFunctions';
+import "./VideoChat.css";
+import {
+    searchKiosk,
+    saveToken,
+    createTable,
+    getToken,
+} from "./TableFunctions";
 
 const videoSectionStyle = {
     height: "200px",
@@ -232,24 +237,26 @@ const UserFetchField = () => {
                 Join Teams Meeting
             </button>
 
-            <div className='videoParent'>
-                <section 
-                //style={videoSectionStyle}
-                className='localVideoSectionStyle localVideo'
+            <div className="videoParent">
+                <section
+                    //style={videoSectionStyle}
+                    className="localVideoSectionStyle localVideo"
                 >
-                    <div id="local-feed-view" 
-                    //style={videoStyle}
-                    className='videoStyle'
+                    <div
+                        id="local-feed-view"
+                        //style={videoStyle}
+                        className="videoStyle"
                     ></div>
                 </section>
-                
-                <section 
-                //style={videoSectionStyle}
-                className='remoteVideoSectionStyle remoteVideo'
+
+                <section
+                    //style={videoSectionStyle}
+                    className="remoteVideoSectionStyle remoteVideo"
                 >
-                    <div id="remote-feed-view" 
-                    //style={videoStyle}
-                    className='videoStyle'
+                    <div
+                        id="remote-feed-view"
+                        //style={videoStyle}
+                        className="videoStyle"
                     ></div>
                 </section>
             </div>
