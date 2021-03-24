@@ -11,7 +11,8 @@ import {
     searchKiosk,
     saveToken,
     createTable,
-    getToken,
+    getuserid,
+    tableservice
 } from "./TableFunctions";
 
 const videoSectionStyle = {
@@ -69,12 +70,19 @@ const startCall = async () => {
     localVideoView();
 
     const calleeInput = document.querySelector("#callee-input");
-    const userToCall = calleeInput.value;
-    call = callAgent.startCall(
-        [{ communicationUserId: userToCall }],
+
+    tableservice.retrieveEntity("KioskToken", calleeInput.value, "1", function(error, result, response) {
+    if (!error) {
+        const aUserToCall = result.Userid._;
+        call = callAgent.startCall(
+        [{ communicationUserId: aUserToCall }],
         placeCallOptions
-    );
+        );
     subscribeToRemoteParticipantInCall(call);
+             
+    }
+    });
+    
 };
 
 const endCall = async () => {
@@ -165,6 +173,59 @@ async function localVideoView() {
     const view = await localRenderer.createView();
     document.getElementById("local-feed-view").appendChild(view.target);
 }
+
+async function userlogin(username){
+
+    const loginInput = document.querySelector("#Login-input");
+    tableservice.retrieveEntity("KioskToken", loginInput.value, "1", async function(error, result, response) {
+    if (!error) {
+    
+        const AcsUserID = result.Userid._;
+        const userDetailResponse = await refreshACSToken(AcsUserID);
+        console.log(userDetailResponse);
+
+        //initializing the calling client and setting the token credential - creating callAgent.
+        const callClient = new CallClient();
+        const tokenCredential = new AzureCommunicationTokenCredential(
+            userDetailResponse.token
+        );
+        callAgent = await callClient.createCallAgent(tokenCredential, {
+            displayName: "Testing Callee",
+        });
+        //creating the local video stream to be sent with the application
+        deviceManager = await callClient.getDeviceManager();
+
+        // subscribing to an incoming call event -> fires whenever we are receiving an incoming call
+        callAgent.on("incomingCall", async (args) => {
+            const cameras = await deviceManager.getCameras();
+            const videoDeviceInfo = cameras[0];
+            localVideoStream = new LocalVideoStream(videoDeviceInfo);
+            localVideoView();
+            const addedCall = await args.incomingCall.accept({
+                videoOptions: { localVideoStreams: [localVideoStream] },
+            });
+            // accept the incoming call
+            call = addedCall;
+
+            subscribeToRemoteParticipantInCall(addedCall);
+            // or reject the incoming call
+            // args.incomingCall.reject();
+        });
+
+        callAgent.on("callsUpdated", (e) => {
+            e.removed.forEach((removedCall) => {
+                // dispose of video renders
+                localRenderer.dispose();
+                remoteRenderer.dispose();
+            });
+        });
+    }
+});
+    //const usertoken = getuserid(loginInput.value);
+    //console.log(usertoken);
+    //refreshACSToken(usertoken);
+
+}
 /* comment for wilson - once the user hits the "Login" button, you will:
             1. take the content of the input box near the login button 
             2. Lookup the login name ex. "wilsonp" or "kiosk1" and pull up the ACS User ID that is associated with that user.
@@ -248,6 +309,11 @@ const UserFetchField = () => {
     return (
         <React.Fragment>
             <h2>{userID}</h2>
+            <button onClick={userlogin} id="Login">
+                Log in
+            </button>
+            <input type="text" id="Login-input"/>
+
             <button onClick={provisionUser} id="provision-user-button">
                 Provision User
             </button>

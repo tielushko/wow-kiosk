@@ -3,6 +3,8 @@ const azure = require('azure-storage');
 //table service tools.
 var tableservice = azure.createTableService(accountName, connectionString);
 var entGen = azure.TableUtilities.entityGenerator;
+var ret;
+
 
 //takes name of the table to create as a string
 function createTable(Tablename){
@@ -42,15 +44,22 @@ function saveToken(Tablename, partitionkey, rowkey, token, userid, expiration)
     });
 }
 
-function getToken(Tablename, partitionkey, rowkey)
+function getuserid(partitionkey)
 {
-    tableservice.retrieveEntity(Tablename, partitionkey, rowkey, function(error, result, response) {
+    
+    const Tablename = "KioskToken";
+    const rowkey = "1";
+    const ret = tableservice.retrieveEntity(Tablename, partitionkey, rowkey, function(error, result, response) {
     if (!error) {
         // result contains the entity
+             
     }
     //values on table must be called inside this scope using result.{name of item}.
-
+    //console.log(ret);
+    //return ret;
 });
+    console.log(ret);
+    return ret;
 }
 
-export{searchKiosk, saveToken, createTable, getToken};
+export{searchKiosk, saveToken, createTable, getuserid, tableservice};
