@@ -1,0 +1,54 @@
+
+.videoStyle{
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*.videoSectionStyle{
+    height: 400px;
+    width: 600px;
+    background-color: black;
+    position: relative;
+}
+
+60vh
+90vh
+
+*/
+.remoteVideoSectionStyle {
+    height: 504px; /*600px*/
+    width: 896px; /*900px*/
+    background-color: black;
+    
+}
+
+.localVideoSectionStyle {
+    height: 168px; /*200*/
+    width: 299px;/*300*/
+    background-color: black;
+    
+}
+
+.videoParent {
+    position: absolute;
+    left: 1.05vw;
+    top:250px;
+}
+
+
+.localVideo {
+    position: relative;
+    top: 336px; /*400*/
+    left: 0;
+    border: 1px red solid;
+    z-index: 99;
+}
+
+.remoteVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px green solid;
+}

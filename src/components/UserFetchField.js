@@ -6,7 +6,8 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
-// import StreamVideo from "../pages/Livevideo/StreamVideo";
+import './VideoChat.css'
+import {searchKiosk, saveToken, createTable, getToken} from './TableFunctions';
 
 const videoSectionStyle = {
     height: "200px",
@@ -62,10 +63,13 @@ const startCall = async () => {
     subscribeToRemoteParticipantInCall(call);
 };
 
-const endCall = () => {
+const endCall = async () => {
     // end the current call
-    call.hangUp(/*{ forEveryone: true }*/);
     localRenderer.dispose();
+    if (remoteRenderer) {
+        remoteRenderer.dispose();
+    }
+    await call.hangUp(/*{ forEveryone: true }*/);
 };
 
 const joinGroupCall = async () => {
@@ -185,6 +189,14 @@ const UserFetchField = () => {
             // args.incomingCall.reject();
         });
 
+        callAgent.on("callsUpdated", (e) => {
+            e.removed.forEach((removedCall) => {
+                // dispose of video renders
+                localRenderer.dispose();
+                remoteRenderer.dispose();
+            });
+        });
+
         setUserID(userDetailResponse.userID);
     };
     return (
@@ -220,17 +232,32 @@ const UserFetchField = () => {
                 Join Teams Meeting
             </button>
 
-            <h2>Local Video</h2>
-            <section style={videoSectionStyle}>
-                <div id="local-feed-view" style={videoStyle}></div>
-            </section>
-            <div></div>
-            <h2>Remote Video</h2>
-            <section style={videoSectionStyle}>
-                <div id="remote-feed-view" style={videoStyle}></div>
-            </section>
+            <div className='videoParent'>
+                <section 
+                //style={videoSectionStyle}
+                className='localVideoSectionStyle localVideo'
+                >
+                    <div id="local-feed-view" 
+                    //style={videoStyle}
+                    className='videoStyle'
+                    ></div>
+                </section>
+                
+                <section 
+                //style={videoSectionStyle}
+                className='remoteVideoSectionStyle remoteVideo'
+                >
+                    <div id="remote-feed-view" 
+                    //style={videoStyle}
+                    className='videoStyle'
+                    ></div>
+                </section>
+            </div>
         </React.Fragment>
     );
 };
+//<h2>Local Video</h2>
+//<div></div>
+//<h2>Remote Video</h2>
 
 export default UserFetchField;
