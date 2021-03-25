@@ -1,7 +1,7 @@
 
 .videoStyle{
     background-color: black;
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
 }
