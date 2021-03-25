@@ -1,7 +1,7 @@
 
 .videoStyle{
     background-color: black;
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -18,15 +18,17 @@
 
 */
 .remoteVideoSectionStyle {
-    height: 504px; /*600px*/
-    width: 896px; /*900px*/
+    height: 504px;
+    width: 896px; 
+   
     background-color: black;
     
 }
 
 .localVideoSectionStyle {
-    height: 168px; /*200*/
-    width: 299px;/*300*/
+    height: 168px;
+    width: 299px;
+    
     background-color: black;
     
 }
@@ -48,6 +50,7 @@
 
 .remoteVideo {
     position: absolute;
+    
     top: 0;
     left: 0;
     border: 1px green solid;

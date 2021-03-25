@@ -6,8 +6,14 @@ import {
     Renderer,
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
-import './VideoChat.css'
-import {searchKiosk, saveToken, createTable, getToken} from './TableFunctions';
+import {
+    searchKiosk,
+    saveToken,
+    createTable,
+    getuserid,
+    tableservice
+} from "./TableFunctions";
+import "./VideoChat.css";
 
 const videoSectionStyle = {
     height: "200px",
