@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Chat from "../../components/Chat/Chat";
 import ChatBot from "../../components/Bot/ChatBot";
-import UserFetchField from "../../components/CallFields/VolunteerView";
 import KioskView from "../../components/CallFields/KioskView.js";
 
 import "./Home.css";
