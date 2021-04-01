@@ -40,14 +40,11 @@ class VolunteerView extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <input type="text" id="Login-input" />
                 <button onClick={userlogin} id="Login">
                     Log in
                 </button>
-                <input type="text" id="Login-input" />
                 <br />
-                {/* <button onClick={provisionUser} id="provision-user-button">
-                Provision User
-            </button> */}
                 <input type="text" id="callee-input" />
                 <button
                     disabled={false}

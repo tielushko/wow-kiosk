@@ -156,6 +156,7 @@ export const provisionUser = async () => {
     // subscribing to an incoming call event -> fires whenever we are receiving an incoming call
     callAgent.on("incomingCall", async (args) => {
         const cameras = await deviceManager.getCameras();
+        console.log(cameras);
         const videoDeviceInfo = cameras[0];
         localVideoStream = new LocalVideoStream(videoDeviceInfo);
         localVideoView();
@@ -193,6 +194,7 @@ export const refreshUser = async (userDetailResponse) => {
     // subscribing to an incoming call event -> fires whenever we are receiving an incoming call
     callAgent.on("incomingCall", async (args) => {
         const cameras = await deviceManager.getCameras();
+        console.log(cameras);
         const videoDeviceInfo = cameras[0];
         localVideoStream = new LocalVideoStream(videoDeviceInfo);
         localVideoView();

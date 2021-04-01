@@ -31,6 +31,7 @@ function App() {
                     </Route>
                     <Route path="/volunteer">
                         <QRCodeForHandoff />
+                        <br/>
                         <VolunteerView />
                     </Route>
                 </Switch>
