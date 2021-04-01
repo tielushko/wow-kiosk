@@ -1,9 +1,8 @@
-import {connectionString, accountName} from './TableEnvironment/environment';
+import {connectionString, accountName} from '../components/TableEnvironment/environment';
 const azure = require('azure-storage');
 //table service tools.
 var tableservice = azure.createTableService(accountName, connectionString);
 var entGen = azure.TableUtilities.entityGenerator;
-var ret;
 
 
 //takes name of the table to create as a string
