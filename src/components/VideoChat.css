@@ -1,5 +1,4 @@
-
-.videoStyle{
+.videoStyle {
     background-color: black;
     position: absolute;
     top: 50%;
@@ -21,22 +20,19 @@
     height: 504px; /*600px*/
     width: 896px; /*900px*/
     background-color: black;
-    
 }
 
 .localVideoSectionStyle {
     height: 168px; /*200*/
-    width: 299px;/*300*/
+    width: 299px; /*300*/
     background-color: black;
-    
 }
 
 .videoParent {
     position: absolute;
     left: 1.05vw;
-    top:250px;
+    top: 400px;
 }
-
 
 .localVideo {
     position: relative;

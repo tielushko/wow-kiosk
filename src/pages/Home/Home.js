@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import Chat from "../../components/Chat/Chat";
 import ChatBot from "../../components/Bot/ChatBot";
-import UserFetchField from "../../components/UserFetchField";
+import UserFetchField from "../../components/CallFields/VolunteerView";
+import KioskView from "../../components/CallFields/KioskView.js";
+
 import "./Home.css";
 
 const Home = () => {
@@ -14,7 +16,7 @@ const Home = () => {
         <div className="container">
             <div className='row'> 
                 <div className='column-left border videoContainer'>
-                    <UserFetchField />
+                    <KioskView />
                 </div>
                 <div className="column-right border">
                     <Chat />
