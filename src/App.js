@@ -13,7 +13,7 @@ function App() {
     return (
         <div>
             <Header />
-            <nav>
+            {/* <nav>
                 <ul>
                     <li>
                         <a href="/handoff">Handoff</a>
@@ -25,7 +25,7 @@ function App() {
                         <a href="/volunteer">Volunteer</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> */}
             <BrowserRouter>
                 <Switch>
                     <Route path="/handoff">
