@@ -13,13 +13,19 @@ function App() {
     return (
         <div>
             <Header />
-            {/* <nav>
+            <nav>
                 <ul>
                     <li>
                         <a href="/handoff">Handoff</a>
                     </li>
+                    <li>
+                        <a href="/kiosk">Kiosk</a>
+                    </li>
+                    <li>
+                        <a href="/volunteer">Volunteer</a>
+                    </li>
                 </ul>
-            </nav> */}
+            </nav>
             <BrowserRouter>
                 <Switch>
                     <Route path="/handoff">
@@ -31,7 +37,7 @@ function App() {
                     </Route>
                     <Route path="/volunteer">
                         <QRCodeForHandoff />
-                        <br/>
+                        <br />
                         <VolunteerView />
                     </Route>
                 </Switch>
