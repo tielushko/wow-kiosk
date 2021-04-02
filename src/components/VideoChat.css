@@ -1,8 +1,10 @@
 .videoStyle {
     background-color: black;
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
+    justify-content: center;
+    align-items: center;
 }
 
 /*.videoSectionStyle{
@@ -11,40 +13,41 @@
     background-color: black;
     position: relative;
 }
-
 60vh
 90vh
-
 */
+
 .remoteVideoSectionStyle {
-    height: 504px; /*600px*/
-    width: 896px; /*900px*/
+    height: 720px; /*600px*/
+    width: 1280px; /*900px*/
     background-color: black;
 }
 
 .localVideoSectionStyle {
-    height: 168px; /*200*/
-    width: 299px; /*300*/
+    height: 180px; /*200*/
+    width: 320px; /*300*/
     background-color: black;
 }
 
 .videoParent {
-    position: absolute;
-    left: 1.05vw;
-    top: 400px;
+    position: relative;
+    /* left: 1.05vw; */
+    top: -100px;
 }
 
 .localVideo {
     position: relative;
-    top: 336px; /*400*/
+    top: 720px; 
     left: 0;
     border: 1px red solid;
     z-index: 99;
 }
 
 .remoteVideo {
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: 0px;
     left: 0;
     border: 1px green solid;
 }
+
+

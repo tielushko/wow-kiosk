@@ -15,6 +15,16 @@ class GroupCallHandoff extends React.Component {
     render() {
         return (
             <React.Fragment>
+                
+                <div className="videoParent">
+                    <section className="localVideoSectionStyle localVideo">
+                        <div id="local-feed-view" className="videoStyle"></div>
+                    </section>
+
+                    <section className="remoteVideoSectionStyle remoteVideo">
+                        <div id="remote-feed-view" className="videoStyle"></div>
+                    </section>
+                </div>
                 <button
                     disabled={false}
                     id="join-group-call-button"
@@ -25,15 +35,6 @@ class GroupCallHandoff extends React.Component {
                 <button disabled={false} id="end-call-button" onClick={endCall}>
                     End Call
                 </button>
-                <div className="videoParent">
-                    <section className="localVideoSectionStyle localVideo">
-                        <div id="local-feed-view" className="videoStyle"></div>
-                    </section>
-
-                    <section className="remoteVideoSectionStyle remoteVideo">
-                        <div id="remote-feed-view" className="videoStyle"></div>
-                    </section>
-                </div>
             </React.Fragment>
         );
     }
