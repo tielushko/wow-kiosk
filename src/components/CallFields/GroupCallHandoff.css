@@ -1,35 +1,9 @@
-.container {
+.containter {
     background-color: #006747;
     padding: 1vw;
-    /* height: auto; */
-    
 }
 
-.column_left {
-    float: left;
-    width: 50%;
-
-}
-
-.column_right {
-    float: left;
-    width: 50%;
- 
-}
-
-.row_volunteer:after {
-    display: flex;
-}
-
-.input_spacing {
-    /* top: 0px;
-    justify-content: center;
-    align-items: center; */
-
-}
-
-
-.videoVolunteer {
+.videoHandoff {
     display: grid;
   /* flex-direction: column; */
   justify-content: center;
@@ -38,7 +12,11 @@
     padding: auto;
 }
 
-.button_login {
+.row_handoff:after{
+    display: flex;
+}
+
+.button_join-handoff {
     background-color: #42995f;
     border: 1px solid #d0c594;
     border-radius: 8px;
@@ -50,11 +28,11 @@
     font-size: 16px;
     transition-duration: 0.4s;
 } 
-.button_login:hover {
+.button_join-handoff:hover {
     background-color: #35804e;
     color: white;
 }
-.button_handoff {
+.button_end {
     background-color: #42995f;
     border: 1px solid #d0c594;
     border-radius: 8px;
@@ -66,19 +44,7 @@
     font-size: 16px;
     transition-duration: 0.4s;
 } 
-.button_handoff:hover {
+.button_end:hover {
     background-color: #35804e;
     color: white;
-}
-
-
-input[type=text] {
-    width: 300px;
-    padding: 10px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-input[type=text]:focus {
-    border: 3px solid #555;
 }

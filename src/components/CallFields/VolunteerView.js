@@ -41,18 +41,6 @@ class VolunteerView extends React.Component {
     render() {
         return (
             <div className='container'> 
-                
-                
-
-                <div className="videoParent">
-                    <section className="localVideoSectionStyle localVideo">
-                        <div id="local-feed-view" className="videoStyle"></div>
-                    </section>
-
-                    <section className="remoteVideoSectionStyle remoteVideo">
-                        <div id="remote-feed-view" className="videoStyle"></div>
-                    </section>
-                </div>
                 <div className="input_spacing row_volunteer">
                     <div className='column_left'>
                         <input type="text" id="Login-input" />
@@ -61,7 +49,6 @@ class VolunteerView extends React.Component {
                         </button>
                     </div>
                     <div className='column_right'>
-                        <br />
                         <input type="text" id="callee-input" />
                         <button
                             className='button_login'
@@ -81,15 +68,25 @@ class VolunteerView extends React.Component {
                         </button>
                     </div>
                 </div>
-                    <br />
-                    <button
-                        className='button_handoff'
-                        disabled={false}
-                        id="join-group-call-button"
-                        onClick={joinGroupCall}
-                    >
-                        Join Handoff Call
-                    </button>
+                <section className='row_volunteer'>
+                    <div className="videoParent ">
+                        <section className="localVideoSectionStyle localVideo">
+                            <div id="local-feed-view" className="videoStyle"></div>
+                        </section>
+
+                        <section className="remoteVideoSectionStyle remoteVideo">
+                            <div id="remote-feed-view" className="videoStyle"></div>
+                        </section>
+                    </div>
+                </section>
+                <button
+                    className='button_handoff'
+                    disabled={false}
+                    id="join-group-call-button"
+                    onClick={joinGroupCall}
+                >
+                    Join Handoff Call
+                </button>
                 
             </div>
         );

@@ -12,31 +12,31 @@
     width: 600px;
     background-color: black;
     position: relative;
-}
-60vh
-90vh
-*/
+}*/
 
 .remoteVideoSectionStyle {
-    height: 720px; /*600px*/
-    width: 1280px; /*900px*/
+    height: 720px; /*720px*/
+    width: 1280px; /*1280px*/
     background-color: black;
 }
 
 .localVideoSectionStyle {
-    height: 180px; /*200*/
-    width: 320px; /*300*/
+    height: 180px; /*180*/
+    width: 320px; /*320*/
     background-color: black;
 }
 
 .videoParent {
-    position: relative;
+    /* position: relative; */
     /* left: 1.05vw; */
-    top: -100px;
+    /* display: grid; */
+    top: 0;
 }
 
 .localVideo {
     position: relative;
+    /* grid-column: 1;
+    grid-row: 1; */
     top: 720px; 
     left: 0;
     border: 1px red solid;
@@ -44,10 +44,12 @@
 }
 
 .remoteVideo {
-    position: relative;
-    top: 0px;
+    /* position: relative; */
+    /* grid-column: 1;
+    grid-row: 1; */
     left: 0;
     border: 1px green solid;
+    z-index: 1;
 }
 
 
