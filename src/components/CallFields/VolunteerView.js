@@ -69,7 +69,7 @@ class VolunteerView extends React.Component {
                     </div>
                 </div>
                 <section className='row_volunteer'>
-                    <div className="videoParent ">
+                    <div className="videoParent">
                         <section className="localVideoSectionStyle localVideo">
                             <div id="local-feed-view" className="videoStyle"></div>
                         </section>
