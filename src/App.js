@@ -18,6 +18,12 @@ function App() {
                     <li>
                         <a href="/handoff">Handoff</a>
                     </li>
+                    <li>
+                        <a href="/kiosk">Kiosk</a>
+                    </li>
+                    <li>
+                        <a href="/volunteer">Volunteer</a>
+                    </li>
                 </ul>
             </nav> */}
             <BrowserRouter>
@@ -30,8 +36,6 @@ function App() {
                         <Home />
                     </Route>
                     <Route path="/volunteer">
-                        <QRCodeForHandoff />
-                        <br/>
                         <VolunteerView />
                     </Route>
                 </Switch>

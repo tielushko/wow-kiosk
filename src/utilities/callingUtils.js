@@ -1,6 +1,7 @@
 import { fetchNewUser } from "./utils";
 import { tableservice } from "./TableFunctions";
 
+import { AzureLogger } from "@azure/logger";
 import {
     CallClient,
     LocalVideoStream,
@@ -8,6 +9,19 @@ import {
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
 import "../components/VideoChat.css";
+
+AzureLogger.verbose = (...args) => {
+    console.info(...args);
+};
+AzureLogger.info = (...args) => {
+    console.info(...args);
+};
+AzureLogger.warning = (...args) => {
+    console.info(...args);
+};
+AzureLogger.error = (...args) => {
+    console.info(...args);
+};
 
 let call;
 let callAgent;
@@ -140,7 +154,7 @@ export const provisionUser = async () => {
     console.log(userDetailResponse);
 
     //initializing the calling client and setting the token credential - creating callAgent.
-    const callClient = new CallClient();
+    const callClient = new CallClient({ logger: AzureLogger });
     const tokenCredential = new AzureCommunicationTokenCredential(
         userDetailResponse.token
     );
@@ -181,7 +195,7 @@ export const provisionUser = async () => {
 };
 
 export const refreshUser = async (userDetailResponse) => {
-    const callClient = new CallClient();
+    const callClient = new CallClient({ logger: AzureLogger });
     const tokenCredential = new AzureCommunicationTokenCredential(
         userDetailResponse.token
     );

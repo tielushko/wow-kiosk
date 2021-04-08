@@ -27,10 +27,12 @@
 }
 
 .videoParent {
+
     /* position: relative; */
     /* left: 1.05vw; */
     /* display: grid; */
     top: 0;
+
 }
 
 .localVideo {
