@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../VideoChat.css";
+import "./KioskView.css"
 import {
     provisionUser,
     joinGroupCall,
@@ -37,7 +38,7 @@ class KioskView extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="videoParent">
+                <div id="kioskVideo" className="videoParent ghost">
                     <section className="localVideoSectionStyle localVideo">
                         <div id="local-feed-view" className="videoStyle"></div>
                     </section>
