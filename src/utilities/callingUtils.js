@@ -204,23 +204,29 @@ export const refreshUser = async (userDetailResponse) => {
     });
     //creating the local video stream to be sent with the application
     deviceManager = await callClient.getDeviceManager();
-
+    
     // subscribing to an incoming call event -> fires whenever we are receiving an incoming call
     callAgent.on("incomingCall", async (args) => {
+        
         const cameras = await deviceManager.getCameras();
         console.log(cameras);
         const videoDeviceInfo = cameras[0];
         localVideoStream = new LocalVideoStream(videoDeviceInfo);
         localVideoView();
+
         const addedCall = await args.incomingCall.accept({
             videoOptions: { localVideoStreams: [localVideoStream] },
         });
         // accept the incoming call
         call = addedCall;
+        document.getElementById("kioskVideo").classList.remove("ghost"); //This will add the video window when call is incoming
 
         subscribeToRemoteParticipantInCall(addedCall);
         // or reject the incoming call
         // args.incomingCall.reject();
+        // if (addedCall){
+        //     document.getElementById("kioskVideo").classList.add("ghost"); //This will add the video window when call is incoming
+        // }
     });
 
     callAgent.on("callsUpdated", (e) => {
@@ -228,6 +234,9 @@ export const refreshUser = async (userDetailResponse) => {
             // dispose of video renders
             localRenderer.dispose();
             remoteRenderer.dispose();
+            document.getElementById("kioskVideo").classList.add("ghost"); //This will add the video window when call is incoming
         });
+        
+
     });
 };

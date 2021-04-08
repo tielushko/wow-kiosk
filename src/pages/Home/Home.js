@@ -5,6 +5,11 @@ import KioskView from "../../components/CallFields/KioskView.js";
 
 import "./Home.css";
 
+
+{/* <div className="column-right border">
+    <Chat />
+</div> */}
+
 const Home = () => {
    
     //column-left
@@ -14,12 +19,10 @@ const Home = () => {
     return (
         <div className="container">
             <div className='row'> 
-                <div className='column-left border videoContainer'>
+                <div className='border videoContainer'>
                     <KioskView />
                 </div>
-                <div className="column-right border">
-                    <Chat />
-                </div>
+                
             </div>
             <div className="row border">
                 <ChatBot />
