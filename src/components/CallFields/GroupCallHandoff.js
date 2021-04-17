@@ -17,7 +17,7 @@ class GroupCallHandoff extends React.Component {
         return (
             <div className='container'>
                 <button
-                    className='button_join-handoff'
+                    className='handoff_button_join-handoff'
                     disabled={false}
                     id="join-group-call-button"
                     onClick={joinGroupCall}
@@ -25,7 +25,7 @@ class GroupCallHandoff extends React.Component {
                     Join Handoff Call
                 </button>
                 <button
-                    className='button_end' 
+                    className='handoff_button_end' 
                     disabled={false} 
                     id="end-call-button" 
                     onClick={endCall}>

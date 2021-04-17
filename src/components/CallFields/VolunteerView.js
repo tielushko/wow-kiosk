@@ -30,6 +30,8 @@ async function userlogin() {
                 const userDetailResponse = await refreshACSToken(AcsUserID);
                 console.log(userDetailResponse);
                 refreshUser(userDetailResponse);
+                document.getElementById("volunteerJoin").classList.remove("ghost");
+                // document.getElementById("volunteerJoin").classList.add("ghost");
             }
         }
     );
@@ -44,14 +46,22 @@ class VolunteerView extends React.Component {
                 <div className="input_spacing row_volunteer">
                     <div className='column_left'>
                         <input type="text" id="Login-input" />
-                        <button className="button_login" onClick={userlogin} id="Login">
+                        <button className="volunteer_button_login" onClick={userlogin} id="Login">
                             Log in
                         </button>
+                        <button
+                    className='volunteer_button_handoff'
+                    disabled={false}
+                    id="join-group-call-button"
+                    onClick={joinGroupCall}
+                >
+                    Join Handoff Call
+                </button>
                     </div>
-                    <div className='column_right'>
+                    <div className='column_right ghost' id='volunteerJoin'>
                         <input type="text" id="callee-input" />
                         <button
-                            className='button_login'
+                            className='volunteer_button_start'
                             disabled={false}
                             id="start-call-button"
                             onClick={startCall}
@@ -60,7 +70,7 @@ class VolunteerView extends React.Component {
                         </button>
 
                         <button 
-                            className='button_login'
+                            className='volunteer_button_end'
                             disabled={false} 
                             id="end-call-button" 
                             onClick={endCall}>
@@ -79,14 +89,7 @@ class VolunteerView extends React.Component {
                         </section>
                     </div>
                 </section>
-                <button
-                    className='button_handoff'
-                    disabled={false}
-                    id="join-group-call-button"
-                    onClick={joinGroupCall}
-                >
-                    Join Handoff Call
-                </button>
+                
                 
             </div>
         );

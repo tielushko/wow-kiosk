@@ -1,6 +1,7 @@
 .containter {
     background-color: #006747;
     padding: 1vw;
+    height: 90vh;
 }
 
 .videoHandoff {
@@ -16,24 +17,25 @@
     display: flex;
 }
 
-.button_join-handoff {
-    background-color: #42995f;
+.handoff_button_join-handoff {
+    background-color: rgb(0, 89, 255);;
     border: 1px solid #d0c594;
     border-radius: 8px;
     color: black;
     padding: 10px 20px;
+    margin-right: 1rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
 } 
-.button_join-handoff:hover {
-    background-color: #35804e;
+.handoff_button_join-handoff:hover {
+    background-color: rgb(0, 0, 201);
     color: white;
 }
-.button_end {
-    background-color: #42995f;
+.handoff_button_end {
+    background-color: red;
     border: 1px solid #d0c594;
     border-radius: 8px;
     color: black;
@@ -44,7 +46,7 @@
     font-size: 16px;
     transition-duration: 0.4s;
 } 
-.button_end:hover {
-    background-color: #35804e;
+.handoff_button_end:hover {
+    background-color: rgb(165, 0, 0);
     color: white;
 }
