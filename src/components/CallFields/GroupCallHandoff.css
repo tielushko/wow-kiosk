@@ -1,7 +1,7 @@
-.containter {
+.handContainer {
     background-color: #006747;
     padding: 1vw;
-    height: 90vh;
+    height: 100vh;
 }
 
 .videoHandoff {
@@ -9,8 +9,10 @@
   /* flex-direction: column; */
   justify-content: center;
   align-items: center;
-    height: auto;
+    /* height: auto; */
     padding: auto;
+    /* object-fit: cover; */
+    /* overflow: visible; */
 }
 
 .row_handoff:after{
@@ -50,3 +52,107 @@
     background-color: rgb(165, 0, 0);
     color: white;
 }
+
+.handVideoStyle {
+    background-color: black;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    justify-content: center;
+    align-items: center;
+}
+
+.handRemoteVideoSectionStyle {
+    height: 720px; /*720px*/
+    width: 1280px; /*1280px*/
+    background-color: black;
+}
+
+.handLocalVideoSectionStyle {
+    height: 180px; /*180*/
+    width: 320px; /*320*/
+    background-color: black;
+}
+
+.videoParent {
+
+    /* position: relative; */
+    /* left: 1.05vw; */
+    /* display: grid; */
+    top: 0;
+
+}
+
+.handLocalVideo {
+    position: relative;
+    /* grid-column: 1;
+    grid-row: 1; */
+    top: 720px; 
+    left: 0;
+    border: 1px red solid;
+    z-index: 99;
+}
+
+.handRemoteVideo {
+    /* position: relative; */
+    /* grid-column: 1;
+    grid-row: 1; */
+    left: 0;
+    border: 1px green solid;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1310px) {
+    .handRemoteVideoSectionStyle {
+        height: 480px; 
+        width: 854px; 
+    }
+    
+    .handLocalVideoSectionStyle {
+        height: 120px; 
+        width: 214px; 
+    }
+    
+    .handLocalVideo {
+        top: 480px; 
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .handRemoteVideoSectionStyle {
+        height: 360px; 
+        width: 640px; 
+    }
+    
+    .handLocalVideoSectionStyle {
+        height: 90px; 
+        width: 160px; 
+    }
+    
+    .handLocalVideo {
+        top: 360px; 
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .handRemoteVideoSectionStyle {
+        height: 180px; 
+        width: 320px; 
+    }
+    
+    .handLocalVideoSectionStyle {
+        height: 180px; 
+        width: 320px; 
+    }
+    
+    .handLocalVideo {
+        top: 360px; 
+    } 
+}
+
+
+/* @media screen and (max-width: 720px) {
+    .videoHandoff {
+        width: 100%;
+    }
+} */
