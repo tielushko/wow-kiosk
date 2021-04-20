@@ -1,5 +1,12 @@
-.iframeStyle{
+.iframeStyle {
     min-width: 400px;
     width: 99.8%;
     min-height: 500px;
+    max-height: 650px;
+}
+
+@media screen and (max-width: 1090px) {
+    .iframeStyle {
+        height: 500px;
+    }
 }

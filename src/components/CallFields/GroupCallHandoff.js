@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../VideoChat.css";
+// import "../VideoChat.css";
 import "./GroupCallHandoff.css";
 import {
     provisionUser,
@@ -15,9 +15,9 @@ class GroupCallHandoff extends React.Component {
     }
     render() {
         return (
-            <div className='container'>
+            <div className='handContainer'>
                 <button
-                    className='button_join-handoff'
+                    className='handoff_button_join-handoff'
                     disabled={false}
                     id="join-group-call-button"
                     onClick={joinGroupCall}
@@ -25,7 +25,7 @@ class GroupCallHandoff extends React.Component {
                     Join Handoff Call
                 </button>
                 <button
-                    className='button_end' 
+                    className='handoff_button_end' 
                     disabled={false} 
                     id="end-call-button" 
                     onClick={endCall}>
@@ -33,12 +33,12 @@ class GroupCallHandoff extends React.Component {
                 </button>
                 <section className='row_handoff'>
                     <div className="videoParent videoHandoff">
-                        <section className="localVideoSectionStyle localVideo">
-                            <div id="local-feed-view" className="videoStyle"></div>
+                        <section className="handLocalVideoSectionStyle handLocalVideo">
+                            <div id="local-feed-view" className="handVideoStyle"></div>
                         </section>
 
-                        <section className="remoteVideoSectionStyle remoteVideo">
-                            <div id="remote-feed-view" className="videoStyle"></div>
+                        <section className="handRemoteVideoSectionStyle handRemoteVideo">
+                            <div id="remote-feed-view" className="handVideoStyle"></div>
                         </section>
                     </div>
                 </section>
