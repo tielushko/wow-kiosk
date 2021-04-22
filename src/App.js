@@ -32,7 +32,6 @@ function App() {
                         <GroupCallHandoff />
                     </Route>
                     <Route path="/kiosk">
-                        <QRCodeForHandoff />
                         <Home />
                     </Route>
                     <Route path="/volunteer">

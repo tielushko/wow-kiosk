@@ -1,7 +1,7 @@
-.container {
+.home-container {
     background-color: #006747;
     padding: 1vw;
-    height: 100vh;
+    height: 150vh;
 }
 
 .column-left {
@@ -35,6 +35,17 @@
   align-items: center;
     height: auto;
     
+}
+
+.qr-location{ 
+    top: 100px;
+}
+.ghost {
+    display: none;
+}
+
+.homeVideo-location{
+    transform: translateY(-10%);
 }
 
 .border-top{

@@ -38,7 +38,7 @@ class KioskView extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div id="kioskVideo" className="videoParent ghost">
+                <div id="kioskVideo" className="videoParent ">
                     <section className="localVideoSectionStyle localVideo">
                         <div id="local-feed-view" className="videoStyle"></div>
                     </section>

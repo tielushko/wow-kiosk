@@ -31,7 +31,8 @@ async function userlogin() {
                 console.log(userDetailResponse);
                 refreshUser(userDetailResponse);
                 document.getElementById("volunteerJoin").classList.remove("ghost");
-                // document.getElementById("volunteerJoin").classList.add("ghost");
+                document.getElementById("logged").classList.remove("ghost");
+                document.getElementById("please").classList.add("ghost");
             }
         }
     );
@@ -44,22 +45,24 @@ class VolunteerView extends React.Component {
         return (
             <div className='container'> 
                 <div className="input_spacing row_volunteer">
-                    <div className='column_left'>
+                    <div className="column_left vl-card">
+                        <p className='volunteer-login-card ' id='please'>
+                            Please login with your username!
+                        </p>
+                        <p className='volunteer-login-card ghost' id='logged'>
+                            You have successfully logged in!
+                        </p>
+                    </div>
+                    <div className='column_middle'>
                         <input type="text" id="Login-input" />
+                        <br></br>
                         <button className="volunteer_button_login" onClick={userlogin} id="Login">
                             Log in
                         </button>
-                        <button
-                    className='volunteer_button_handoff'
-                    disabled={false}
-                    id="join-group-call-button"
-                    onClick={joinGroupCall}
-                >
-                    Join Handoff Call
-                </button>
                     </div>
                     <div className='column_right ghost' id='volunteerJoin'>
                         <input type="text" id="callee-input" />
+                        <br></br>
                         <button
                             className='volunteer_button_start'
                             disabled={false}
@@ -76,17 +79,27 @@ class VolunteerView extends React.Component {
                             onClick={endCall}>
                             End Call
                         </button>
+
+                        <button
+                            className='volunteer_button_handoff'
+                            disabled={false}
+                            id="join-group-call-button"
+                            onClick={joinGroupCall}
+                        >
+                            Join Handoff Call
+                        </button>
                     </div>
                 </div>
-                <section className='row_volunteer'>
-                    <div className="videoParent">
-                        <section className="localVideoSectionStyle localVideo">
-                            <div id="local-feed-view" className="videoStyle"></div>
-                        </section>
+                <div className="volunteer-gap"></div>
+                <section className="row_volunteer">
+                    <div className="videoParent ">
+                    <section className="localVideoSectionStyle localVideo">
+                        <div id="local-feed-view" className="videoStyle"></div>
+                    </section>
 
-                        <section className="remoteVideoSectionStyle remoteVideo">
-                            <div id="remote-feed-view" className="videoStyle"></div>
-                        </section>
+                    <section className="remoteVideoSectionStyle remoteVideo">
+                        <div id="remote-feed-view" className="videoStyle"></div>
+                    </section>
                     </div>
                 </section>
                 
