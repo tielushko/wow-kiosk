@@ -9,6 +9,7 @@ import {
 } from "@azure/communication-calling";
 import { AzureCommunicationTokenCredential } from "@azure/communication-common";
 import "../components/VideoChat.css";
+import "../pages/Home/Home.css"
 
 AzureLogger.verbose = (...args) => {
     console.info(...args);
@@ -219,7 +220,7 @@ export const refreshUser = async (userDetailResponse) => {
         });
         // accept the incoming call
         call = addedCall;
-        document.getElementById("kioskVideo").classList.remove("ghost"); //This will add the video window when call is incoming
+        document.getElementById("homeKiosk").classList.remove("ghost"); //This will add the video window when call is incoming
 
         subscribeToRemoteParticipantInCall(addedCall);
         // or reject the incoming call
@@ -234,7 +235,7 @@ export const refreshUser = async (userDetailResponse) => {
             // dispose of video renders
             localRenderer.dispose();
             remoteRenderer.dispose();
-            document.getElementById("kioskVideo").classList.add("ghost"); //This will add the video window when call is incoming
+            document.getElementById("homeKiosk").classList.add("ghost"); //This will add the video window when call is incoming
         });
         
 
