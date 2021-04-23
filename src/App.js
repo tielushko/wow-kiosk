@@ -3,29 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import "./App.css";
 import Header from "./components/Header";
-// import UserFetchField from "./components/UserFetchField";
 import GroupCallHandoff from "./components/CallFields/GroupCallHandoff";
-import QRCodeForHandoff from "./components/CallFields/QRCodeForHandoff";
 import VolunteerView from "./components/CallFields/VolunteerView";
-// import KioskView from "./components/CallFields/KioskView.js";
 
 function App() {
     return (
         <div>
             <Header />
-            {/* <nav>
-                <ul>
-                    <li>
-                        <a href="/handoff">Handoff</a>
-                    </li>
-                    <li>
-                        <a href="/kiosk">Kiosk</a>
-                    </li>
-                    <li>
-                        <a href="/volunteer">Volunteer</a>
-                    </li>
-                </ul>
-            </nav> */}
             <BrowserRouter>
                 <Switch>
                     <Route path="/handoff">
@@ -39,14 +23,6 @@ function App() {
                     </Route>
                 </Switch>
             </BrowserRouter>
-            {/* <Route to="/" exact render={() => <Home />} />
-            <Route
-                to="/testing"
-                exact
-                render={() => {
-                    <UserFetchField />;
-                }}
-            /> */}
         </div>
     );
 }

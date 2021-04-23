@@ -1,11 +1,5 @@
 import React from "react";
-// import {
-//     CallClient,
-//     CallAgent,
-//     LocalVideoStream,
-//     Renderer,
-// } from "@azure/communication-calling";
-// import { AzureCommunicationTokenCredential } from "@azure/communication-common";
+
 import "../VideoChat.css";
 import "./VolunteerView.css";
 import { tableservice } from "../../utilities/TableFunctions";
@@ -54,14 +48,14 @@ class VolunteerView extends React.Component {
                         </p>
                     </div>
                     <div className='column_middle'>
-                        <input type="text" id="Login-input" />
-                        <br></br>
+                        <input type="text" id="Login-input" placeholder="Enter Your Username"/>
+                        
                         <button className="volunteer_button_login" onClick={userlogin} id="Login">
                             Log in
                         </button>
                     </div>
                     <div className='column_right ghost' id='volunteerJoin'>
-                        <input type="text" id="callee-input" />
+                        <input type="text" id="callee-input" placeholder="Enter Kiosk To Call" />
                         <br></br>
                         <button
                             className='volunteer_button_start'
