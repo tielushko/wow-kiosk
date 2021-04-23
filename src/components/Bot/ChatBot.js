@@ -5,6 +5,13 @@ import ReactWebChat, {
 } from "botframework-webchat";
 import "./ChatBot.css";
 
+const styles = {
+    bubbleMaxWidth: 300,
+    bubbleImageHeight: 250,
+    botAvatarInitials: "WK",
+    userAvatarInitials: "U",
+};
+
 class ChatBot extends React.Component {
     constructor(props) {
         super(props);
@@ -54,6 +61,7 @@ class ChatBot extends React.Component {
                 className="iframeStyle"
                 directLine={this.state.directLine}
                 webSpeechPonyfillFactory={this.state.botPonyFill}
+                styleOptions={styles}
             />
         ) : (
             <div>Connecting to bot&hellip;</div>
