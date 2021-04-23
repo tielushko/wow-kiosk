@@ -1,37 +1,68 @@
 .container {
     background-color: #006747;
     padding: 1vw;
-    height: 100vh;
+    height: 110vh;
     
+}
+
+.volunteer-nonvideo {
+    column-count: 3;
 }
 
 .column_left {
     float: left;
-    width: 50%;
+    width: 33%;
 
 }
 
-.column_right {
+.column_middle {
     float: left;
-    width: 50%;
+    width: 20%;
+}
+
+.column_right {
+    margin-left: 10%;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 37%;
  
 }
 
 .row_volunteer:after {
     display: flex;
+    height: 100%;
+}
+.volunteer-gap {
+    /* height: 150px; */
 }
 
 .input_spacing {
     /* top: 0px;
     justify-content: center;
     align-items: center; */
-
 }
 
 .ghost {
     display: none;
 }
 
+.vl-card {
+    /* background-color: white; */
+}
+
+.volunteer-login-card {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.volunteer-video-location {
+    
+    top: 50%;
+    left: 50%;
+}
 
 .videoVolunteer {
     display: flex;
@@ -71,6 +102,8 @@
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
+    margin: 8px 0;
+    z-index: 99;
 } 
 .volunteer_button_handoff:hover {
     background-color: #a5923e;
@@ -84,6 +117,7 @@
     color: black;
     padding: 10px 20px;
     margin-right: 1rem;
+    
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -101,6 +135,7 @@
     border-radius: 8px;
     color: black;
     padding: 10px 20px;
+    margin-right: 1rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -122,4 +157,52 @@ input[type=text] {
 
 input[type=text]:focus {
     border: 3px solid #555;
+}
+
+@media screen and (max-width: 600px) {
+    .column_left {
+        float: none;
+        width: 100%;
+    }
+
+    .column_middle {
+        float: none;
+        width: 100%;
+    }
+    
+    .column_right {
+        float: none;
+        width: 100%;
+        /* padding-bottom: 50px; */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .column_left {
+        float: none;
+        width: 100%;
+    }
+
+    .column_middle {
+        float: none;
+        width: 100%;
+    }
+    
+    .column_right {
+        float: none;
+        width: 100%;
+        /* padding-bottom: 50px; */
+    }
+    .volunteer-video-location {
+        -webkit-transform: translateY(-50%);
+        transform: translateY(0%);
+        top: 50%;
+        left: 50%;
+    }
+    .volunteer-gap {
+        height: 150px;
+    }
+    input[type=text] {
+        width: 280px;
+    }
 }
