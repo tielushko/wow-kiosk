@@ -23,12 +23,7 @@
     justify-content: center;
     align-items: center;
 }
-/*.videoSectionStyle{
-    height: 400px;
-    width: 600px;
-    background-color: black;
-    position: relative;
-}*/
+
 
 .remoteVideoSectionStyle {
     height: 576px; /*720px*/
@@ -101,6 +96,7 @@
     }
 }
 
+/* Mobile device sizing */
 @media screen and (max-width: 500px) {
     .remoteVideoSectionStyle {
         height: 180px; /*720px*/

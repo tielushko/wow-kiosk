@@ -31,6 +31,7 @@ class GroupCallHandoff extends React.Component {
                     onClick={endCall}>
                     End Call
                 </button>
+                <p className='handoffText'>Please rotate screen for call</p>
                 <section className='row_handoff'>
                     <div className="videoParent videoHandoff">
                         <section className="handLocalVideoSectionStyle handLocalVideo">
