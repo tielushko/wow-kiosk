@@ -37,6 +37,13 @@
     
 }
 
+.homeText{
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
 .qr-location{ 
     top: 100px;
 }

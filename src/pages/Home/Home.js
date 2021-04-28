@@ -15,6 +15,7 @@ const Home = () => {
                 <div className='border videoContainer'>
                     <div className="qr-location">
                     <QRCodeForHandoff />
+                    <p className='homeText'>Scan for Mobile Handoff</p>
                     </div>
                     <div className='homeVideo-location'>
                     <KioskView />

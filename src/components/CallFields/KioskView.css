@@ -1,3 +1,4 @@
+/* This makes the video componant invisible until feed is recieved */
 .ghost {
     display: none;
 }

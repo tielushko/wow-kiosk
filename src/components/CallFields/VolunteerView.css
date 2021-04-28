@@ -8,18 +8,18 @@
 .volunteer-nonvideo {
     column-count: 3;
 }
-
+/* Creates column 1 */
 .column_left {
     float: left;
     width: 33%;
 
 }
-
+/* Creates column 2 */
 .column_middle {
     float: left;
     width: 20%;
 }
-
+/* Creates column 3 */
 .column_right {
     margin-left: 10%;
     align-items: center;

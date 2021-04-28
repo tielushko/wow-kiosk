@@ -118,6 +118,13 @@
     }
 }
 
+.handoffText {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
     .handRemoteVideoSectionStyle {
         height: 360px; 
