@@ -101,7 +101,7 @@
     }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 500px) {
     .remoteVideoSectionStyle {
         height: 180px; /*720px*/
         width: 320px; /*1280px*/
