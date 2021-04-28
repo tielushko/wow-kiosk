@@ -6,8 +6,8 @@ import ReactWebChat, {
 import "./ChatBot.css";
 
 const styles = {
-    bubbleMaxWidth: 300,
-    bubbleImageHeight: 250,
+    bubbleMaxWidth: 200,
+    bubbleImageHeight: 200,
     botAvatarInitials: "WK",
     userAvatarInitials: "U",
 };
