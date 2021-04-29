@@ -1,18 +1,14 @@
 import React from "react";
 
 import "../VideoChat.css";
-import "./KioskView.css"
-import {
-    provisionUser,
-    joinGroupCall,
-    endCall,
-    refreshUser,
-} from "../../utilities/callingUtils";
+import "./KioskView.css";
+import { refreshUser } from "../../utilities/callingUtils";
 import { tableservice } from "../../utilities/TableFunctions";
 import { refreshACSToken } from "../../utilities/utils";
 
+// function responsible for taking the username of the kisok quering database to retrieve acs user id, and with that, refresh user,
+// and refreshing the volunteer's access token.
 async function userlogin(username) {
-    // const loginInput = document.querySelector("#Login-input");
     tableservice.retrieveEntity(
         "KioskToken",
         username,
@@ -22,6 +18,7 @@ async function userlogin(username) {
                 const AcsUserID = result.Userid._;
                 const userDetailResponse = await refreshACSToken(AcsUserID);
                 console.log(userDetailResponse);
+                //refresh access token
                 refreshUser(userDetailResponse);
             }
         }
@@ -35,6 +32,7 @@ class KioskView extends React.Component {
         userlogin(username);
     }
 
+    //render of the kiosk view
     render() {
         return (
             <React.Fragment>

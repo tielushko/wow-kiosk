@@ -10,6 +10,7 @@ function App() {
     return (
         <div>
             <Header />
+            {/* router setup for the website to handle various request and render appropriate page for server request */}
             <BrowserRouter>
                 <Switch>
                     <Route path="/handoff">

@@ -1,5 +1,6 @@
 import React from "react";
 
+// handoff qr code, jus tuses the api to render the QR code with current webpage base url and add /handoff
 class QRCodeForHandoff extends React.Component {
     componentDidMount() {}
 

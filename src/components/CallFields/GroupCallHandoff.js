@@ -1,6 +1,5 @@
 import React from "react";
 
-// import "../VideoChat.css";
 import "./GroupCallHandoff.css";
 import {
     provisionUser,
@@ -8,16 +7,19 @@ import {
     endCall,
 } from "../../utilities/callingUtils";
 
+// component is used in the /handoff route of the website and is responsible for the mobile handoff feature.
+
 class GroupCallHandoff extends React.Component {
+    //upon mounting, provision a GUEST user.
     componentDidMount() {
         provisionUser();
-        console.log(window.location.href);
     }
+
     render() {
         return (
-            <div className='handContainer'>
+            <div className="handContainer">
                 <button
-                    className='handoff_button_join-handoff'
+                    className="handoff_button_join-handoff"
                     disabled={false}
                     id="join-group-call-button"
                     onClick={joinGroupCall}
@@ -25,21 +27,28 @@ class GroupCallHandoff extends React.Component {
                     Join Handoff Call
                 </button>
                 <button
-                    className='handoff_button_end' 
-                    disabled={false} 
-                    id="end-call-button" 
-                    onClick={endCall}>
+                    className="handoff_button_end"
+                    disabled={false}
+                    id="end-call-button"
+                    onClick={endCall}
+                >
                     End Call
                 </button>
-                <p className='handoffText'>Please rotate screen for call</p>
-                <section className='row_handoff'>
+                <p className="handoffText">Please rotate screen for call</p>
+                <section className="row_handoff">
                     <div className="videoParent videoHandoff">
                         <section className="handLocalVideoSectionStyle handLocalVideo">
-                            <div id="local-feed-view" className="handVideoStyle"></div>
+                            <div
+                                id="local-feed-view"
+                                className="handVideoStyle"
+                            ></div>
                         </section>
 
                         <section className="handRemoteVideoSectionStyle handRemoteVideo">
-                            <div id="remote-feed-view" className="handVideoStyle"></div>
+                            <div
+                                id="remote-feed-view"
+                                className="handVideoStyle"
+                            ></div>
                         </section>
                     </div>
                 </section>
