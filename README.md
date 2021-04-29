@@ -1,10 +1,24 @@
-# Getting Started with Create React App
+# University of South Florida Week of Welcome
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Project Introduction
+
+In the beginning of every semester University of South Florida holds an event called Week of Welcome which is meant to introduce new students to USF and help facilitate a successful start of the semester to returning students. Its main goal is to get the students involved in the events across campus and get helpful resources from the volunteers regarding college campus and activities. The main stakeholder, Microsoft, desires to assist USF community in building a virtual kiosk for such an event that can facilitate remote interaction between students and volunteers, as well as offer help through the usage of a chatbot. There is a problem of getting the best resources during the Week of Welcome especially during the current COVID-19 pandemic and having a remote kiosk with the voice and video enabled communication, and bot assistant will offer the students plenty of informational resources and help. 
+
+This repository represents the main web applicatioin and is hosted on https://wow-kiosk.netlify.app/
+
+Visit /volunteer to view the volunteer access to the kiosk. 
+Visit /kiosk to view the kiosk front
+And visit /handoff for viewing the handoff feature.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Allows you to pull all the required node_modules to your local repository
 
 ### `npm start`
 
