@@ -8,9 +8,11 @@ In the beginning of every semester University of South Florida holds an event ca
 
 This repository represents the main web applicatioin and is hosted on https://wow-kiosk.netlify.app/
 
-Visit /volunteer to view the volunteer access to the kiosk. 
-Visit /kiosk to view the kiosk front
-And visit /handoff for viewing the handoff feature.
+Visit [/volunteer](https://wow-kiosk.netlify.app/volunteer) to view the volunteer access to the kiosk. 
+
+Visit [/kiosk](https://wow-kiosk.netlify.app/kiosk) to view the kiosk front
+
+And visit [/handoff](https://wow-kiosk.netlify.app/handoff) for viewing the handoff feature.
 
 ## Available Scripts
 
