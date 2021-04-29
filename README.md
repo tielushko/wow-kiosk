@@ -14,6 +14,21 @@ Visit [/kiosk](https://wow-kiosk.netlify.app/kiosk) to view the kiosk front
 
 And visit [/handoff](https://wow-kiosk.netlify.app/handoff) for viewing the handoff feature.
 
+## Azure Services Used For the Project
+Here is the full list of resources essential for the proper functioning of the project:
+
+Bot Functions:
+1.	Azure Web App Bot.
+2.	Azure Bot Framework.
+3.	Azure App Service. 
+4.	Cognitive Services QnA Maker.
+5.	Cognitive Services Speech.
+
+Calling Functions:
+1.	Azure Communication Services.
+2.	Azure Functions.
+3.	Azure Tables.
+
 ## Available Scripts
 
 In the project directory, you can run:
